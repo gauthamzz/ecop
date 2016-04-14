@@ -1,4 +1,37 @@
 {%extends "base.html"%}
 {%block content%}
-<h1>hello</h1>
+<div class ="col-sm-6 col-sm-offset-3">
+<h1>{{title}}<br/></h1>
+	<div class="row">
+	{%for object in object_list%}
+<!--edit here for changing induvijual ones -->
+    complaint id :
+    <a href='{{object.get_absolute_url}}'  class="btn btn-primary" role="button">{{object.complaintid}}</a>
+
+    <br/><br/>
+
+
+	{% endfor%}
+
+
+<!--paginator dont change-->
+<div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?page={{ object_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <a href="?page={{ object_list.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+
+</div>
+
 {%endblock content%}

@@ -26,7 +26,7 @@ class Complaint(models.Model):
 
 
 	def __unicode__(self):
-		return self.complaintid
+		return unicode(self.complaintid)
 	def __str__(self):
 		return self.complaintid
 	def get_absolute_url(self):
