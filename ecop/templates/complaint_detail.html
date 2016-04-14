@@ -1,0 +1,12 @@
+{%extends "base.html"%}
+{% block head_title %} {{instance.title}}{% endblock head_title%}
+
+
+{%block content%}
+<div class="col-sm-6 col-sm-offset-3">
+<h1>{{title}}!<small>{{instance.dateofcomplaint}}</small></h1>
+Description : {{instance.content|linebreaks}}<br/>
+Police Station :{{instance.policestation}}</br>
+Location : {{instance.location}}
+</div>
+{%endblock content%}
