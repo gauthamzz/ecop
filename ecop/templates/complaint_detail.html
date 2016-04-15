@@ -4,32 +4,30 @@
 
 {%block content%}
 <div class="col-sm-6 col-sm-offset-3">
-<h1>{{title}}!<small>{{instance.dateofcomplaint}}</small></h1>
+<h1>Complaint {{title}}<small>{{instance.dateofcomplaint}}</small></h1>
 Description : {{instance.content|linebreaks}}<br/>
 Police Station :{{instance.policestation}}</br>
 Location : {{instance.location}}
 
-<h2>FIR</h2>
+<h2>{{title2}}</h2>
 {{instance2.firid}}<br/>
 {{instance2.content}}<br/>
 {{instance2.signedby}}<br/>
 
-<h3>Police Proceedings</h3>
+<h3>{{title3}}</h3>
 {%for object in instance3%}
 
-Title {{object.title}}<br/>
-Date {{object.dateofregister}}<br/>
-content {{object.description}}<br/>
-</br></br>
+<h4> {{object.title}}<small>{{object.dateofregister}}</small></h4>
+
+{{object.description}}></br><br/>
 {%endfor%}
 
-<h3>Court Proceedings</h3>
+<h3>{{title4}}</h3>
 {%for obj in instance4%}
 
-case number {{obj.casenumber}}<br/>
-court name {{obj.courtname}}<br/>
-date {{obj.dateofregister}}<br/>
-content {{obj.description}}<br/>
+<h4>case number :- {{obj.casenumber}} <small>{{obj.dateofregister}}</small></h4><br/>
+court name : {{obj.courtname}}<br/>
+procedure done : {{obj.description}}<br/>
 <br/>
 <br/>
 {%endfor%}

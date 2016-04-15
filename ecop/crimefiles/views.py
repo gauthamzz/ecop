@@ -68,15 +68,20 @@ def casestatus_create(request,id=None):
 
 def complaint_detail(request,id=None):
 	instance=get_object_or_404(Complaint,complaintid=id)
+	title2="FIR"
 	try:
 		instance2=Fir.objects.get(complaintid=id)
 	except ObjectDoesNotExist:
 		instance2=None
 	instance3=CopStatus.objects.filter(complaintid=id)
 	instance4=CaseStatus.objects.filter(complaintid=id)
-	print instance3
+	title3="Police proceeding"
+	title4="Case proceeding"
 	context={
 	"title":instance.complaintid,
+	"title2":title2,
+	"title3":title3,
+	"title4":title4,
 	"instance":instance,
 	"instance2":instance2,
 	"instance3":instance3,
