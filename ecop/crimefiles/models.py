@@ -3,18 +3,6 @@ from django.core.urlresolvers import reverse
 from django.db import models
 
 # Create your models here.
-class CaseStatus(models.Model):
-	casenumber = models.CharField(max_length=10,primary_key=True)
-	description=models.TextField()
-	courtname= models.CharField(max_length=200)
-	verdict=models.TextField()
-	caseflag=models.BooleanField()
-	dateofregister=models.DateTimeField()
-
-	def __unicode__(self):
-		return self.casenumber
-	def __str__(self):
-		return self.casenumber
 
 
 class Complaint(models.Model):
@@ -32,10 +20,26 @@ class Complaint(models.Model):
 	def get_absolute_url(self):
 		return reverse("crimefiles:detail", kwargs={"id":self.complaintid})	
 
+
+class CaseStatus(models.Model):
+	casenumber = models.CharField(max_length=10,primary_key=True)
+	description=models.TextField()
+	courtname= models.CharField(max_length=200)
+	verdict=models.TextField()
+	caseflag=models.BooleanField()
+	dateofregister=models.DateTimeField(auto_now=False, auto_now_add=True)
+	complaintid=models.ForeignKey(Complaint,default=None)
+
+	def __unicode__(self):
+		return self.casenumber
+	def __str__(self):
+		return self.casenumber
+
 class Fir(models.Model):
 	firid=models.CharField(max_length=10,primary_key=True)
+	complaintid=models.ForeignKey(Complaint,default=None)
 	signedby= models.CharField(max_length=20)
-	content=models.TextField(default="First Information Report")
+	content=models.TextField(default="First Information Report not yet submitted")
 
 	def  __unicode__(self):
 		return self.firid
@@ -46,11 +50,12 @@ class Fir(models.Model):
 class CopStatus(models.Model):
 	title=models.CharField(max_length=100)
 	description=models.TextField()
-	dateofregister=models.DateTimeField()
+	complaintid=models.ForeignKey(Complaint,default=None)
+	dateofregister=models.DateTimeField(auto_now=False, auto_now_add=True)
 
 	def  __unicode__(self):
-		return self.firid
+		return unicode(self.id)
 
 	def __str__(self):
-		return self.firid
+		return self.id
 
