@@ -25,8 +25,6 @@ class CaseStatus(models.Model):
 	casenumber = models.CharField(max_length=10,primary_key=True)
 	description=models.TextField()
 	courtname= models.CharField(max_length=200)
-	verdict=models.TextField()
-	caseflag=models.BooleanField()
 	dateofregister=models.DateTimeField(auto_now=False, auto_now_add=True)
 	complaintid=models.ForeignKey(Complaint,default=None)
 

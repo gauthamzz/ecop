@@ -15,8 +15,24 @@ Location : {{instance.location}}
 {{instance2.signedby}}<br/>
 
 <h3>Police Proceedings</h3>
-{{instance3.title}}<br/>
-{{instance3.dateofregister}}<br/>
-{{instance3.description}}<br/>
+{%for object in instance3%}
+
+Title {{object.title}}<br/>
+Date {{object.dateofregister}}<br/>
+content {{object.description}}<br/>
+</br></br>
+{%endfor%}
+
+<h3>Court Proceedings</h3>
+{%for obj in instance4%}
+
+case number {{obj.casenumber}}<br/>
+court name {{obj.courtname}}<br/>
+date {{obj.dateofregister}}<br/>
+content {{obj.description}}<br/>
+<br/>
+<br/>
+{%endfor%}
+
 </div>
 {%endblock content%}

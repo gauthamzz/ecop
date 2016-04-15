@@ -1,7 +1,7 @@
 from django import forms
 
 
-from .models import Complaint,Fir,CopStatus
+from .models import Complaint,Fir,CopStatus,CaseStatus
 
 
 class ComplaintForm(forms.ModelForm):
@@ -25,4 +25,11 @@ class CopStatusForm(forms.ModelForm):
 		fields=[
 		"title",
 		"description"]
-		
+
+class CaseStatusForm(forms.ModelForm):
+	class Meta:
+		model=CaseStatus
+		fields=[
+		"casenumber",
+		"description",
+		"courtname"]

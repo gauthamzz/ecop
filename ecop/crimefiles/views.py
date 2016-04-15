@@ -4,8 +4,8 @@ from django.shortcuts import render,get_object_or_404,redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import ObjectDoesNotExist
 
-from .forms import ComplaintForm,FirForm,CopStatusForm
-from .models import Complaint,Fir,CopStatus
+from .forms import ComplaintForm,FirForm,CopStatusForm,CaseStatusForm
+from .models import Complaint,Fir,CopStatus,CaseStatus
 # Create your views here.
 
 def complaint_create(request):
@@ -37,6 +37,7 @@ def fir_create(request,id=None):
 def copstatus_create(request,id=None):
 	complaintid= get_object_or_404(Complaint,complaintid=id)
 	form =CopStatusForm(request.POST or None)
+	title="Police Procedure"
 	if form.is_valid():
 		instance=form.save(commit=False)
 		instance.complaintid=complaintid
@@ -44,6 +45,23 @@ def copstatus_create(request,id=None):
 		messages.success(request,"sucessfully Created")
 		return HttpResponseRedirect('/crimefiles/')
 	context={
+	"title":title,
+	"form":form
+	}
+	return render(request,"CopStatus_form.html",context)
+
+def casestatus_create(request,id=None):
+	complaintid= get_object_or_404(Complaint,complaintid=id)
+	form =CaseStatusForm(request.POST or None)
+	title="Case Procedure"
+	if form.is_valid():
+		instance=form.save(commit=False)
+		instance.complaintid=complaintid
+		instance.save()
+		messages.success(request,"sucessfully Created")
+		return HttpResponseRedirect('/crimefiles/')
+	context={
+	"title":title,
 	"form":form
 	}
 	return render(request,"CopStatus_form.html",context)
@@ -54,12 +72,15 @@ def complaint_detail(request,id=None):
 		instance2=Fir.objects.get(complaintid=id)
 	except ObjectDoesNotExist:
 		instance2=None
-	instance3=CopStatus.objects.get(complaintid=id)
+	instance3=CopStatus.objects.filter(complaintid=id)
+	instance4=CaseStatus.objects.filter(complaintid=id)
+	print instance3
 	context={
 	"title":instance.complaintid,
 	"instance":instance,
 	"instance2":instance2,
 	"instance3":instance3,
+	"instance4":instance4,
 	}
 	return render(request,"complaint_detail.html",context)
 
