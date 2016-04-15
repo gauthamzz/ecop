@@ -54,7 +54,7 @@ def complaint_detail(request,id=None):
 		instance2=Fir.objects.get(complaintid=id)
 	except ObjectDoesNotExist:
 		instance2=None
-	instance3=CopStatus.objects.filter(complaintid=id)
+	instance3=CopStatus.objects.get(complaintid=id)
 	context={
 	"title":instance.complaintid,
 	"instance":instance,
