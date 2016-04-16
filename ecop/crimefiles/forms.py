@@ -1,8 +1,6 @@
 from django import forms
 
-
 from .models import Complaint,Fir,CopStatus,CaseStatus
-
 
 class ComplaintForm(forms.ModelForm):
 	class Meta:
@@ -33,3 +31,4 @@ class CaseStatusForm(forms.ModelForm):
 		"casenumber",
 		"description",
 		"courtname"]
+

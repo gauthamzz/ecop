@@ -8,9 +8,12 @@ from .views import (
 	fir_create,
 	copstatus_create,
 	casestatus_create,
+	login,
+
 	)
 
 urlpatterns = [
+	url(r'^login$',login),
 	url(r'^createcomplaint$',complaint_create),
 	url(r'^(?P<id>\d+)/createfir$',fir_create),
 	url(r'^(?P<id>\d+)/createcopstatus$',copstatus_create),

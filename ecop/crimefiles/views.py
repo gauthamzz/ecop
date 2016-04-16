@@ -3,10 +3,12 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render,get_object_or_404,redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth import authenticate, login
 
 from .forms import ComplaintForm,FirForm,CopStatusForm,CaseStatusForm
 from .models import Complaint,Fir,CopStatus,CaseStatus
 # Create your views here.
+
 
 def complaint_create(request):
 	form =ComplaintForm(request.POST or None)
@@ -92,7 +94,7 @@ def complaint_detail(request,id=None):
 
 def complaint_list(request):
 	queryset_list=Complaint.objects.all().order_by("-dateofcomplaint")
-	paginator = Paginator(queryset_list, 5) # Show 25 contacts per page
+	paginator = Paginator(queryset_list, 10) # Show 25 contacts per page
 
 	page = request.GET.get('page')
 	try:
@@ -126,3 +128,18 @@ def complaint_update(request,id= None):
 
 
 
+
+def login(request):
+	username = request.POST.get("username")
+	password = request.POST.get("password")
+	if request.method=='POST':
+		user=authenticate(username=instance.username,password=instance.password)
+		if user:
+			if user.is_active:
+				login(request,user)
+				message.sucess(request,"sucessfully Logged in")
+		return HttpResponseRedirect('/crimefiles/')
+	context={
+	
+	}
+	return render(request,"login_form.html",context)
