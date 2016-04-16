@@ -9,7 +9,6 @@ from .views import (
 	copstatus_create,
 	casestatus_create,
 	login,
-
 	)
 
 urlpatterns = [
@@ -21,5 +20,4 @@ urlpatterns = [
 	url(r'^$', complaint_list,name="list"),
 	url(r'^(?P<id>\d+)/edit$', complaint_update,name="update"),
 	url(r'^(?P<id>\d+)/$', complaint_detail,name="detail"),
-	#url(r'^(?P<id>\d+)/delete$', post_delete),
-]
+	]

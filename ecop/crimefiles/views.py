@@ -91,7 +91,6 @@ def complaint_detail(request,id=None):
 	}
 	return render(request,"complaint_detail.html",context)
 
-
 def complaint_list(request):
 	queryset_list=Complaint.objects.all().order_by("-dateofcomplaint")
 	paginator = Paginator(queryset_list, 10) # Show 25 contacts per page
@@ -125,9 +124,6 @@ def complaint_update(request,id= None):
 	"form":form,
 	}
 	return render(request,"complaint_form.html",context)
-
-
-
 
 def login(request):
 	username = request.POST.get("username")

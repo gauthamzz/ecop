@@ -1,11 +1,7 @@
 from __future__ import unicode_literals
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.contrib.auth.models import User,Group
 # Create your models here.
-
-
-
 
 
 class Complaint(models.Model):
@@ -36,6 +32,7 @@ class CaseStatus(models.Model):
 	def __str__(self):
 		return self.casenumber
 
+
 class Fir(models.Model):
 	firid=models.CharField(max_length=10,primary_key=True)
 	complaintid=models.ForeignKey(Complaint,default=None)
@@ -47,6 +44,7 @@ class Fir(models.Model):
 
 	def __str__(self):
 		return self.firid
+
 
 class CopStatus(models.Model):
 	title=models.CharField(max_length=100)
