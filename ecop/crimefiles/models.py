@@ -3,7 +3,6 @@ from django.core.urlresolvers import reverse
 from django.db import models
 # Create your models here.
 
-
 class Complaint(models.Model):
 	complaintid= models.AutoField(primary_key=True)
 	dateofcomplaint=models.DateTimeField(auto_now=False, auto_now_add=True)
@@ -57,4 +56,5 @@ class CopStatus(models.Model):
 
 	def __str__(self):
 		return self.id
+
 

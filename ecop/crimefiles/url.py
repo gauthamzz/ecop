@@ -12,7 +12,8 @@ from .views import (
 	)
 
 urlpatterns = [
-	url(r'^login$',login),
+	# url(r'^login$',login),
+	url(r'^login/$','django.contrib.auth.views.login',name='login',kwargs={'template_name': 'login_form.html'}),
 	url(r'^createcomplaint$',complaint_create),
 	url(r'^(?P<id>\d+)/createfir$',fir_create),
 	url(r'^(?P<id>\d+)/createcopstatus$',copstatus_create),

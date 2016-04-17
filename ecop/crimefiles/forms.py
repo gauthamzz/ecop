@@ -1,6 +1,6 @@
 from django import forms
-from .models import Complaint,Fir,CopStatus,CaseStatus
 
+from .models import Complaint,Fir,CopStatus,CaseStatus
 
 class ComplaintForm(forms.ModelForm):
 	class Meta:

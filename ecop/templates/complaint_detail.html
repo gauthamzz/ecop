@@ -3,8 +3,27 @@
 
 
 {%block content%}
+<!-- <a href='{{object.get_absolute_url}}edit'  class="btn btn-primary" role="button">update complaint</a>
+<a href='{{object.get_absolute_url}}createfir'  class="btn btn-primary" role="button">create fir</a>
+<a href='{{object.get_absolute_url}}createcopstatus'  class="btn btn-primary" role="button">create cop status</a>
+<a href='{{object.get_absolute_url}}createcasestatus'  class="btn btn-primary" role="button">update case status</a> -->
+<nav>
+  <div class="nav-wrapper">
+    <a href="{{object.get_absolute_url}}" class="brand-logo ">Complaint {{title}}</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="{{object.get_absolute_url}}edit">update complaint</a></li>
+      <li><a href="{{object.get_absolute_url}}createfir">create fir</a></li>
+      <li><a href="{{object.get_absolute_url}}createcopstatus">create cop status</a></li>
+      <li><a href="{{object.get_absolute_url}}createcasestatus">create case status</a></li>
+      <li><a href="/crimefiles/">complaint home</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
 <div class="col-sm-6 col-sm-offset-3">
-<h1>Complaint {{title}}<small>{{instance.dateofcomplaint}}</small></h1>
+<h1><small>{{instance.dateofcomplaint}}</small></h1>
 Description : {{instance.content|linebreaks}}<br/>
 Police Station :{{instance.policestation}}</br>
 Location : {{instance.location}}
