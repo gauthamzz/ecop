@@ -1,14 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
+
+<nav class='teal'>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo center">E-COP</a>
+  </div>
+</nav>
+
+<div class ="col-sm-6 col-sm-offset-3">
 <form method="post" action="">
 {% csrf_token %}
 <table>
 {{ form }}
 </table>
-<input type="submit"  class="btn btn-primary" value="login" />
+<input type="submit"  class="waves-effect waves-light btn" value="login" />
 <input type="hidden" name="next" value="/crimefiles/" />
 </form>
+</div>
 {% endblock %}
