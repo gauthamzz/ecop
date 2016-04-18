@@ -99,7 +99,7 @@ def complaint_detail(request,id=None):
 	return render(request,"complaint_detail.html",context)
 
 def complaint_list(request):
-	print request.user
+	# print request.user
 	queryset_list=Complaint.objects.all().order_by("-dateofcomplaint")
 	paginator = Paginator(queryset_list, 10) # Show 25 contacts per page
 	who=request.user
