@@ -3,13 +3,24 @@ from django.core.urlresolvers import reverse
 from django.db import models
 # Create your models here.
 
+
 class Complaint(models.Model):
 	complaintid= models.AutoField(primary_key=True)
 	dateofcomplaint=models.DateTimeField(auto_now=False, auto_now_add=True)
 	content = models.TextField()
 	policestation= models.CharField(max_length=120)
 	location=models.TextField()
-
+	complaintregistered="Complaint Registered"
+	firfiled="Fir Filed"
+	caseopen="Case Open"
+	caseclosed="Case Closed"
+	status_choice=(
+		(complaintregistered,"Complaint Registered"),
+		(firfiled,"Fir Filed"),
+		(caseopen,"Case Open"),
+		(caseclosed,"Case Closed"),
+		)
+	status=models.CharField(max_length=15,choices=status_choice,default=complaintregistered)
 
 	def __unicode__(self):
 		return unicode(self.complaintid)
