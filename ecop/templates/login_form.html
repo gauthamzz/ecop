@@ -7,12 +7,16 @@
   </div>
 </nav>
 
-<div class ="col-sm-6 col-sm-offset-3">
+
+<br/><br/><br/>
+<div class ="col-sm-5 col-sm-offset-3">
 <form method="post" action="">
 {% csrf_token %}
-<table>
+<div class="card-panel hoverable grey lighten-4">
+
 {{ form }}
-</table>
+
+</div>
 <input type="submit"  class="waves-effect waves-light btn" value="login" />
 <input type="hidden" name="next" value="/crimefiles/" />
 </form>

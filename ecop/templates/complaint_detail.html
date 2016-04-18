@@ -19,8 +19,6 @@
     </ul>
   </div>
 </nav>
-
-
 <div class="col-sm-6 col-sm-offset-3">
 
   <!-- contents of complaint -->
@@ -44,21 +42,34 @@
  </div> -->
 
 
-
+{%if instance2%}
 <!-- contents of fir -->
-<div class="card-panel hoverable grey lighten-4">
-<h2>{{title2}}</h2>
+<div class="card-panel hoverable teal lighten-5">
+  <nav>
+     <div class="nav-wrapper teal center">
+    <h3>   {{title2}}</h3>
+  </div>
+   </nav>
+
+<!-- <h2>{{title2}}</h2> -->
 {{instance2.firid}}<br/>
 {{instance2.content}}<br/>
 {{instance2.signedby}}<br/>
 </div>
+{% endif %}
 <!-- <div class="parallax-container">
   <div class="parallax"><img src="images/3.jpg"></div>
 </div> -->
-
+{%if instance3%}
 <!-- contents of police procedure -->
-<div class="card-panel hoverable grey lighten-4">
-<h3>{{title3}}</h3>
+<div class="card-panel hoverable teal lighten-4">
+  <nav>
+     <div class="nav-wrapper teal center">
+    <h3>   {{title3}}</h3>
+  </div>
+   </nav>
+
+
 {%for object in instance3%}
 
 <h4> {{object.title}}<small>{{object.dateofregister}}</small></h4>
@@ -66,14 +77,21 @@
 {{object.description}}></br><br/>
 {%endfor%}
 </div>
+{% endif %}
 <!-- <div class="parallax-container">
    <div class="parallax"><img src="images/1.jpg"></div>
  </div> -->
 
-
+{%if instance4%}
 <!-- contents of case procedure -->
-<div class="card-panel hoverable grey lighten-4">
-<h3>{{title4}}</h3>
+<div class="card-panel hoverable teal lighten-3">
+  <nav>
+     <div class="nav-wrapper teal center">
+    <h3>   {{title4}}</h3>
+  </div>
+   </nav>
+
+<!-- <h3>{{title4}}</h3> -->
 {%for obj in instance4%}
 
 <h4>case number :- {{obj.casenumber}} <small>{{obj.dateofregister}}</small></h4><br/>
@@ -83,5 +101,7 @@ procedure done : {{obj.description}}<br/>
 <br/>
 {%endfor%}
 </div>
+
+{%endif%}
 </div>
 {%endblock content%}
