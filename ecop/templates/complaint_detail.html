@@ -11,28 +11,53 @@
   <div class="nav-wrapper">
     <a href="{{object.get_absolute_url}}" class="brand-logo ">Complaint {{title}}</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="{{object.get_absolute_url}}edit">update complaint</a></li>
-      <li><a href="{{object.get_absolute_url}}createfir">create fir</a></li>
-      <li><a href="{{object.get_absolute_url}}createcopstatus">create cop status</a></li>
-      <li><a href="{{object.get_absolute_url}}createcasestatus">create case status</a></li>
-      <li><a href="/crimefiles/">complaint home</a></li>
+      <li><a href="{{object.get_absolute_url}}edit"><i class="material-icons left">update</i>Complaint</a></li>
+      <li><a href="{{object.get_absolute_url}}createfir"><i class="material-icons left">add</i>FIR</a></li>
+      <li><a href="{{object.get_absolute_url}}createcopstatus"><i class="material-icons left">add</i>Cop status</a></li>
+      <li><a href="{{object.get_absolute_url}}createcasestatus"><i class="material-icons left">add</i>Case status</a></li>
+      <li><a href="/crimefiles/"><i class="material-icons left">view_list</i>Home</a></li>
     </ul>
   </div>
 </nav>
 
 
-
 <div class="col-sm-6 col-sm-offset-3">
-<h1><small>{{instance.dateofcomplaint}}</small></h1>
-Description : {{instance.content|linebreaks}}<br/>
-Police Station :{{instance.policestation}}</br>
-Location : {{instance.location}}
 
+  <!-- contents of complaint -->
+
+
+ <!-- <div class="section white">
+   <div class="row container">
+     <h2 class="header">Complaint Details</h2> -->
+<div class="card-panel hoverable grey lighten-4">
+     <h1><small>{{instance.dateofcomplaint}}</small></h1>
+     Description : {{instance.content|linebreaks}}<br/>
+     Police Station :{{instance.policestation}}</br>
+     Location : {{instance.location}}
+</div>
+     <!-- <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p> -->
+   <!-- </div>
+ </div> -->
+ <!-- add if parallax needed -->
+ <!-- <div class="parallax-container">
+   <div class="parallax"><img src="images/2.jpg"></div>
+ </div> -->
+
+
+
+<!-- contents of fir -->
+<div class="card-panel hoverable grey lighten-4">
 <h2>{{title2}}</h2>
 {{instance2.firid}}<br/>
 {{instance2.content}}<br/>
 {{instance2.signedby}}<br/>
+</div>
+<!-- <div class="parallax-container">
+  <div class="parallax"><img src="images/3.jpg"></div>
+</div> -->
 
+<!-- contents of police procedure -->
+<div class="card-panel hoverable grey lighten-4">
 <h3>{{title3}}</h3>
 {%for object in instance3%}
 
@@ -40,7 +65,14 @@ Location : {{instance.location}}
 
 {{object.description}}></br><br/>
 {%endfor%}
+</div>
+<!-- <div class="parallax-container">
+   <div class="parallax"><img src="images/1.jpg"></div>
+ </div> -->
 
+
+<!-- contents of case procedure -->
+<div class="card-panel hoverable grey lighten-4">
 <h3>{{title4}}</h3>
 {%for obj in instance4%}
 
@@ -50,6 +82,6 @@ procedure done : {{obj.description}}<br/>
 <br/>
 <br/>
 {%endfor%}
-
+</div>
 </div>
 {%endblock content%}

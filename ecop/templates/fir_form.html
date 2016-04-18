@@ -1,7 +1,17 @@
 {%extends "base.html"%}
 {%block content%}
+<nav class='teal'>
+  <div class="nav-wrapper">
+    <a href="" class="brand-logo center">  <i class="material-icons left">add</i>Create FIR</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="/crimefiles">  <i class="material-icons left">view_list</i>Home</a></li>
+    </ul>
+
+  </div>
+</nav>
+
 <div class="col-sm-6 col-sm-offset-3">
-<h1>Create FIR</h1>
+
 
 
 <form method='POST' action=''>{% csrf_token %}
