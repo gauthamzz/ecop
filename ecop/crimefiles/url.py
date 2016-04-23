@@ -9,6 +9,7 @@ from .views import (
 	copstatus_create,
 	casestatus_create,
 	login,
+	caseclose,
 	)
 
 urlpatterns = [
@@ -18,6 +19,7 @@ urlpatterns = [
 	url(r'^(?P<id>\d+)/createfir$',fir_create),
 	url(r'^(?P<id>\d+)/createcopstatus$',copstatus_create),
 	url(r'^(?P<id>\d+)/createcasestatus$',casestatus_create),
+	url(r'^(?P<id>\d+)/closecase$',caseclose),
 	url(r'^$', complaint_list,name="list"),
 	url(r'^(?P<id>\d+)/edit$', complaint_update,name="update"),
 	url(r'^(?P<id>\d+)/$', complaint_detail,name="detail"),

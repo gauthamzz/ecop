@@ -6,8 +6,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User, Group
 
-from .forms import ComplaintForm,FirForm,CopStatusForm,CaseStatusForm
-from .models import Complaint,Fir,CopStatus,CaseStatus
+from .forms import ComplaintForm,FirForm,CopStatusForm,CaseStatusForm,CaseCloseForm
+from .models import Complaint,Fir,CopStatus,CaseStatus,CaseClose
 # Create your views here.
 
 
@@ -27,11 +27,14 @@ def fir_create(request,id=None):
 	if not request.user.groups.filter(name="Police").exists():
 		return Http404
 	complaintid= get_object_or_404(Complaint,complaintid=id)
+	instance2=Complaint.objects.get(complaintid=id)
 	form =FirForm(request.POST or None)
 	if form.is_valid():
 		instance=form.save(commit=False)
 		instance.complaintid=complaintid
 		instance.save()
+		instance2.status="Fir Filed"
+		instance2.save()
 		messages.success(request,"sucessfully Created")
 		return HttpResponseRedirect('/crimefiles/')
 	context={
@@ -61,12 +64,36 @@ def casestatus_create(request,id=None):
 	if not request.user.groups.filter(name="Court").exists():
 		return Http404
 	complaintid= get_object_or_404(Complaint,complaintid=id)
+	instance2=Complaint.objects.get(complaintid=id)
 	form =CaseStatusForm(request.POST or None)
 	title="Case Procedure"
 	if form.is_valid():
 		instance=form.save(commit=False)
 		instance.complaintid=complaintid
 		instance.save()
+		instance2.status="Case Open"
+		instance2.save()
+		messages.success(request,"sucessfully Created")
+		return HttpResponseRedirect('/crimefiles/')
+	context={
+	"title":title,
+	"form":form
+	}
+	return render(request,"CopStatus_form.html",context)
+
+def caseclose(request,id=None):
+	if not request.user.groups.filter(name="Court").exists():
+		return Http404
+	complaintid= get_object_or_404(Complaint,complaintid=id)
+	instance2=Complaint.objects.get(complaintid=id)
+	form =CaseCloseForm(request.POST or None)
+	title="Case Verdict Form"
+	if form.is_valid():
+		instance=form.save(commit=False)
+		instance.complaintid=complaintid
+		instance.save()
+		instance2.status="Case Closed"
+		instance2.save()
 		messages.success(request,"sucessfully Created")
 		return HttpResponseRedirect('/crimefiles/')
 	context={
@@ -84,8 +111,12 @@ def complaint_detail(request,id=None):
 		instance2=None
 	instance3=CopStatus.objects.filter(complaintid=id)
 	instance4=CaseStatus.objects.filter(complaintid=id)
+	instance5=CaseClose.objects.filter(complaintid=id)
 	title3="Police proceeding"
 	title4="Case proceeding"
+	is_compainant = request.user.groups.filter(name='citizen').exists()
+	is_cop=request.user.groups.filter(name='Police').exists()
+	is_court=request.user.groups.filter(name='Court').exists()
 	context={
 	"title":instance.complaintid,
 	"title2":title2,
@@ -95,6 +126,10 @@ def complaint_detail(request,id=None):
 	"instance2":instance2,
 	"instance3":instance3,
 	"instance4":instance4,
+	"instance5":instance5,
+	"is_compainant":is_compainant,
+	"is_court":is_court,
+	"is_cop":is_cop,
 	}
 	return render(request,"complaint_detail.html",context)
 

@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Complaint,Fir,CopStatus,CaseStatus
+from .models import Complaint,Fir,CopStatus,CaseStatus,CaseClose
 
 class ComplaintForm(forms.ModelForm):
 	class Meta:
@@ -25,10 +25,20 @@ class CopStatusForm(forms.ModelForm):
 		"description"]
 
 class CaseStatusForm(forms.ModelForm):
+	# close=forms.BooleanField(required=False,widget=forms.CheckBoxInput())
 	class Meta:
 		model=CaseStatus
 		fields=[
 		"casenumber",
 		"description",
-		"courtname"]
+		"courtname",
+		"close"]
+		
+class CaseCloseForm(forms.ModelForm):
+	# close=forms.BooleanField(required=False,widget=forms.CheckBoxInput())
+	class Meta:
+		model=CaseClose
+		fields=[
+		"verdict",
+		"description"]
 

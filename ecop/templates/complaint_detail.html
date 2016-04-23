@@ -11,10 +11,18 @@
   <div class="nav-wrapper">
     <a href="{{object.get_absolute_url}}" class="brand-logo ">Complaint {{title}}</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="{{object.get_absolute_url}}edit"><i class="material-icons left">update</i>Complaint</a></li>
+    {% if is_compainant%}
+      <li><a href="{{object.get_absolute_url}}edit"><i class="material-icons left">update</i>Complaint</a></li>{%endif%}
+          {% if is_cop%}
       <li><a href="{{object.get_absolute_url}}createfir"><i class="material-icons left">add</i>FIR</a></li>
       <li><a href="{{object.get_absolute_url}}createcopstatus"><i class="material-icons left">add</i>Cop status</a></li>
+      {%endif%}
+      {% if is_court %}
       <li><a href="{{object.get_absolute_url}}createcasestatus"><i class="material-icons left">add</i>Case status</a></li>
+      {%endif%}  
+      {% if is_court %}
+      <li><a href="{{object.get_absolute_url}}closecase"><i class="material-icons left">close</i>Case Close</a></li>
+      {%endif%}
       <li><a href="/crimefiles/"><i class="material-icons left">view_list</i>Home</a></li>
     </ul>
   </div>
@@ -97,6 +105,28 @@
 <h4>case number :- {{obj.casenumber}} <small>{{obj.dateofregister}}</small></h4><br/>
 court name : {{obj.courtname}}<br/>
 procedure done : {{obj.description}}<br/>
+<br/>
+<br/>
+{%endfor%}
+</div>
+
+{%endif%}
+
+{%if instance5%}
+<!-- contents of case procedure -->
+<div class="card-panel hoverable teal lighten-3">
+  <nav>
+     <div class="nav-wrapper teal center">
+    <h3> Verdict</h3>
+  </div>
+   </nav>
+
+<!-- <h3>{{title4}}</h3> -->
+{%for obj in instance5%}
+
+<h4>case number :- {{obj.verdict}} <small>{{obj.dateofregister}}</small></h4><br/>
+
+Details: {{obj.description}}<br/>
 <br/>
 <br/>
 {%endfor%}
