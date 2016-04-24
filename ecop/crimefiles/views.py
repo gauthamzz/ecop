@@ -142,7 +142,9 @@ def complaint_list(request):
 	# print request.user
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/crimefiles/login")
-	if not request.user.groups.filter(name="citizen").exists():
+	if request.user.groups.filter(name="Police").exists():
+		queryset_list=Complaint.objects.all().order_by("-dateofcomplaint")
+	elif request.user.groups.filter(name='Court').exists():
 		queryset_list=Complaint.objects.all().order_by("-dateofcomplaint")
 	else:
 		queryset_list=Complaint.objects.filter(user=request.user.username).order_by("-dateofcomplaint")
