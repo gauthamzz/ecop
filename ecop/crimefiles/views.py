@@ -17,6 +17,7 @@ def complaint_create(request):
 	form =ComplaintForm(request.POST or None)
 	if form.is_valid():
 		instance=form.save(commit=False)
+		instance.user=request.user.username
 		instance.save()
 		messages.success(request,"sucessfully Created")
 		return HttpResponseRedirect(instance.get_absolute_url())
@@ -30,6 +31,7 @@ def fir_create(request,id=None):
 		return Http404
 	complaintid= get_object_or_404(Complaint,complaintid=id)
 	instance2=Complaint.objects.get(complaintid=id)
+	instance3=Fir.objects.filter(complaintid=id)
 	form =FirForm(request.POST or None)
 	if form.is_valid():
 		instance=form.save(commit=False)
@@ -40,7 +42,8 @@ def fir_create(request,id=None):
 		messages.success(request,"sucessfully Created")
 		return HttpResponseRedirect('/crimefiles/')
 	context={
-	"form":form
+	"form":form,
+	"instance3":instance3,
 	}
 	return render(request,"fir_form.html",context)
 
@@ -137,7 +140,12 @@ def complaint_detail(request,id=None):
 
 def complaint_list(request):
 	# print request.user
-	queryset_list=Complaint.objects.all().order_by("-dateofcomplaint")
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/crimefiles/login")
+	if not request.user.groups.filter(name="citizen").exists():
+		queryset_list=Complaint.objects.all().order_by("-dateofcomplaint")
+	else:
+		queryset_list=Complaint.objects.filter(user=request.user.username).order_by("-dateofcomplaint")
 	paginator = Paginator(queryset_list, 5) # Show 25 contacts per page
 	who=request.user
 	page = request.GET.get('page')

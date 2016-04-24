@@ -10,6 +10,7 @@ class Complaint(models.Model):
 	content = models.TextField()
 	policestation= models.CharField(max_length=120)
 	location=models.TextField()
+	user=models.CharField(max_length=120,default="Annonymous")
 	complaintregistered="Complaint Registered"
 	firfiled="Fir Filed"
 	caseopen="Case Open"
