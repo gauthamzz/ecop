@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<nav class='teal'>
+  <div class="nav-wrapper">
+    <a href="" class="brand-logo center">  <i class="material-icons left">visibility</i>E-COP</a>
+  </div>
+</nav>
+
+
+<br/><br/><br/>
+
+ 
+<div class ="col-sm-5 col-sm-offset-3">
+<form method="post" action="">
+{% csrf_token %}
+<div class="card-panel hoverable grey lighten-4">
+
+{{ form }}
+
+</div>
+<input type="submit"  class="waves-effect waves-light btn" value="login" />
+<input type="hidden" name="next" value="/crimefiles/" />
+</form>
+</div>
+
+
+
+{% endblock %}

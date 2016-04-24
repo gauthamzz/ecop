@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+<nav class='teal'>
+  <div class="nav-wrapper">
+    <a href="" class="brand-logo center">  <i class="material-icons left">visibility</i>E-COP</a>
+  </div>
+</nav>
+
+
+<br/><br/><br/>
+
+ 
+<div class ="col-sm-5 col-sm-offset-3">
+<form method="post" action="">
+{% csrf_token %}
+<div class="card-panel hoverable grey lighten-4">
+
+Username:{{ form.username}}
+Email:{{form.email}}
+Password:{{form.password1}}
+Password:{{form.password2}}
+
+</div>
+<input type="submit"  class="waves-effect waves-light btn" value="register" />
+<input type="hidden" name="next" value="/crimefiles/" />
+</form>
+</div>
+
+<!-- footer -->
+
+  <footer class="page-footer teal">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">E Cop </h5>
+                <p class="grey-text text-lighten-4">The Online complaint registration form.</p>
+              </div>
+             
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2014 Copyright E-COP
+            <a class="grey-text text-lighten-4 right" href="/accounts/login">Login</a>
+            </div>
+          </div>
+        </footer>
+
+
+{% endblock %}

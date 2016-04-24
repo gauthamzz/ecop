@@ -1,5 +1,7 @@
 from django.conf.urls import url
 from django.contrib import admin
+
+from django.views.generic import TemplateView
 from .views import (
 	complaint_create,
 	complaint_detail,
@@ -10,6 +12,7 @@ from .views import (
 	casestatus_create,
 	login,
 	caseclose,
+	
 	)
 
 urlpatterns = [
@@ -23,4 +26,7 @@ urlpatterns = [
 	url(r'^$', complaint_list,name="list"),
 	url(r'^(?P<id>\d+)/edit$', complaint_update,name="update"),
 	url(r'^(?P<id>\d+)/$', complaint_detail,name="detail"),
+	
+   
 	]
+

@@ -14,12 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url,include
+from django.shortcuts import redirect
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^crimefiles/',include("crimefiles.url",namespace="crimefiles"))
+    url(r'^crimefiles/',include("crimefiles.url",namespace="crimefiles")),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url('^$', lambda x: redirect('/crimefiles'))
 ]
 if settings.DEBUG==True:
     urlpatterns+= static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

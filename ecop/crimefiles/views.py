@@ -6,6 +6,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User, Group
 
+
+
 from .forms import ComplaintForm,FirForm,CopStatusForm,CaseStatusForm,CaseCloseForm
 from .models import Complaint,Fir,CopStatus,CaseStatus,CaseClose
 # Create your views here.
@@ -136,7 +138,7 @@ def complaint_detail(request,id=None):
 def complaint_list(request):
 	# print request.user
 	queryset_list=Complaint.objects.all().order_by("-dateofcomplaint")
-	paginator = Paginator(queryset_list, 10) # Show 25 contacts per page
+	paginator = Paginator(queryset_list, 5) # Show 25 contacts per page
 	who=request.user
 	page = request.GET.get('page')
 	try:
@@ -170,5 +172,4 @@ def complaint_update(request,id= None):
 	"form":form,
 	}
 	return render(request,"complaint_form.html",context)
-
 
