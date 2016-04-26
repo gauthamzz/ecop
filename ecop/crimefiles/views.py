@@ -28,9 +28,9 @@ def complaint_create(request):
 
 def fir_create(request,id=None):
 	if not request.user.groups.filter(name="Police").exists():
-		return Http404
+		raise Http404
 	if CaseClose.objects.filter(complaintid=id).exists():
-		return Http404
+		raise Http404
 	complaintid= get_object_or_404(Complaint,complaintid=id)
 	instance2=Complaint.objects.get(complaintid=id)
 	instance3=Fir.objects.filter(complaintid=id)
@@ -51,9 +51,9 @@ def fir_create(request,id=None):
 
 def copstatus_create(request,id=None):
 	if not request.user.groups.filter(name="Police").exists():
-		return Http404
+		raise Http404
 	if CaseClose.objects.filter(complaintid=id).exists():
-		return Http404
+		raise Http404
 	complaintid= get_object_or_404(Complaint,complaintid=id)
 	form =CopStatusForm(request.POST or None)
 	title="Police Procedure"
@@ -71,9 +71,9 @@ def copstatus_create(request,id=None):
 
 def casestatus_create(request,id=None):
 	if not request.user.groups.filter(name="Court").exists():
-		return Http404
+		raise Http404
 	if CaseClose.objects.filter(complaintid=id).exists():
-		return Http404
+		raise Http404
 	complaintid= get_object_or_404(Complaint,complaintid=id)
 	instance2=Complaint.objects.get(complaintid=id)
 	form =CaseStatusForm(request.POST or None)
@@ -94,9 +94,9 @@ def casestatus_create(request,id=None):
 
 def caseclose(request,id=None):
 	if not request.user.groups.filter(name="Court").exists():
-		return Http404
+		raise Http404
 	if CaseClose.objects.filter(complaintid=id).exists():
-		return Http404
+		raise Http404
 	complaintid= get_object_or_404(Complaint,complaintid=id)
 	instance2=Complaint.objects.get(complaintid=id)
 	form =CaseCloseForm(request.POST or None)
@@ -119,7 +119,7 @@ def complaint_detail(request,id=None):
 	instance=get_object_or_404(Complaint,complaintid=id)
 	if not (request.user.groups.filter(name="Court").exists() or request.user.groups.filter(name="Police").exists()):
 		if not request.user.username==instance.user:
-			return Http404
+			raise Http404
 	title2="FIR"
 	try:
 		instance2=Fir.objects.get(complaintid=id)
@@ -180,10 +180,12 @@ def complaint_list(request):
 def complaint_update(request,id= None):
 	if not request.user.is_superuser:
 		if request.user.groups.filter(name="Police").exists() or request.user.groups.filter(name="Court").exists():
-	 		return Http404
+	 		raise Http404
 	if Fir.objects.filter(complaintid=id).exists():
-		return Http404
+		raise Http404
 	instance=get_object_or_404(Complaint,complaintid=id)
+	if not request.user.username==instance.user:
+		raise Http404
 	form =ComplaintForm(request.POST or None,instance=instance)
 	if form.is_valid():
 		instance=form.save(commit=False)
