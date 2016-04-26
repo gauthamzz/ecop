@@ -32,7 +32,8 @@ class CaseStatusForm(forms.ModelForm):
 		"casenumber",
 		"description",
 		"courtname",
-		"close"]
+		# "close"
+		]
 		
 class CaseCloseForm(forms.ModelForm):
 	# close=forms.BooleanField(required=False,widget=forms.CheckBoxInput())

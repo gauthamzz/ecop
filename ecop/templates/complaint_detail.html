@@ -11,20 +11,39 @@
   <div class="nav-wrapper">
     <a href="{{object.get_absolute_url}}" class="brand-logo ">Complaint {{title}}</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
+    
+      <li><a href="/crimefiles/"><i class="material-icons left">view_list</i>Home</a></li>
+       {%if not instance5%}
+
     <!-- {% if is_compainant%} -->
-      <li><a href="{{object.get_absolute_url}}edit"><i class="material-icons left">update</i>Complaint</a></li>
+     <li><a href="{{object.get_absolute_url}}edit"><i class="material-icons left">update</i>Complaint</a></li>
       <!-- {%endif%} -->
-          {% if is_cop%}
+    {%if not instance2%}
+     
+      {% if is_cop%}
       <li><a href="{{object.get_absolute_url}}createfir"><i class="material-icons left">add</i>FIR</a></li>
+      
+      {%endif%}
+    {%endif%}
+
+    {% if is_cop%}
       <li><a href="{{object.get_absolute_url}}createcopstatus"><i class="material-icons left">add</i>Cop status</a></li>
       {%endif%}
+
       {% if is_court %}
       <li><a href="{{object.get_absolute_url}}createcasestatus"><i class="material-icons left">add</i>Case status</a></li>
       {%endif%}  
+      
+
       {% if is_court %}
       <li><a href="{{object.get_absolute_url}}closecase"><i class="material-icons left">close</i>Case Close</a></li>
       {%endif%}
-      <li><a href="/crimefiles/"><i class="material-icons left">view_list</i>Home</a></li>
+
+
+    {%endif%}
+
+
+      
     </ul>
   </div>
 </nav>

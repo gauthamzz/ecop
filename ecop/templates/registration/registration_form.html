@@ -3,52 +3,68 @@
 
 <nav class='teal'>
   <div class="nav-wrapper">
-    <a href="" class="brand-logo center">  <i class="material-icons left">visibility</i>E-COP</a>
+    <a href="/" class="brand-logo center">  <i class="material-icons left">search</i>Crimefiles</a>
   </div>
+ 
+ <ul class="right hide-on-med-and-down">
+         </ul>
+
+
+
 </nav>
 
 
-<br/><br/><br/>
-
- 
-<div class ="col-sm-5 col-sm-offset-3">
+</br></br>
+<div class ="col-sm-4 col-sm-offset-4">
 <form method="post" action="">
 {% csrf_token %}
 <div class="card-panel hoverable grey lighten-4">
 
-Username:{{ form.username}}
-Email:{{form.email}}
-Password:{{form.password1}}
-Password:{{form.password2}}
+{{ form.as_p }}
 
 </div>
-<input type="submit"  class="waves-effect waves-light btn" value="register" />
+<input type="submit"  class="waves-effect waves-light btn" value="Register" />
 <input type="hidden" name="next" value="/crimefiles/" />
+  
+<!-- 
+  <button class="btn waves-effect waves-light" type="submit" name="action" onclick="window.location.href='/accounts/register'">Register
+   
+  </button> -->
+
 </form>
 </div>
-<!-- modal -->
+ <!-- parallax -->
 
-Username should be 30 characters or fewer. Letters, digits and @/./+/-/_ only.
-Password must contain at least 8 characters.
+
+    <div class="parallax-container">
+      <div class="parallax">
+        
+
+      </div>
+    </div>
+
+
 <!-- footer -->
 
   <footer class="page-footer teal">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text">E Cop </h5>
-                <p class="grey-text text-lighten-4">You will be only allowed to update complaints after verification.This will take atleast 15 govt.days.Police and Court id's cannot be created using this Form.</p>
+                <h5 class="white-text">Crimefiles </h5>
+                <p class="grey-text text-lighten-4">An Online complaint registration and case tracking system</p>
               </div>
              
             </div>
           </div>
           <div class="footer-copyright">
             <div class="container">
-            © 2014 Copyright E-COP
+            © 2016 Copyright Gautham, Sulyab, Geetha, Akhila
             <a class="grey-text text-lighten-4 right" href="/accounts/login">Login</a>
             </div>
           </div>
         </footer>
 
 
+
+        
 {% endblock %}

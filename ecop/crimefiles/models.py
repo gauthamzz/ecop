@@ -37,7 +37,7 @@ class CaseStatus(models.Model):
 	courtname= models.CharField(max_length=200)
 	dateofregister=models.DateTimeField(auto_now=False, auto_now_add=True)
 	complaintid=models.ForeignKey(Complaint,default=None)
-	close=models.BooleanField()
+	# close=models.BooleanField()
 	def __unicode__(self):
 		return self.casenumber
 	def __str__(self):
