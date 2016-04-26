@@ -19,7 +19,7 @@ def complaint_create(request):
 		instance=form.save(commit=False)
 		instance.user=request.user.username
 		instance.save()
-		messages.success(request,"sucessfully Created")
+		messages.success(request,"Complaint registered successfully")
 		return HttpResponseRedirect(instance.get_absolute_url())
 	context={
 	"form":form
@@ -39,9 +39,9 @@ def fir_create(request,id=None):
 		instance=form.save(commit=False)
 		instance.complaintid=complaintid
 		instance.save()
-		instance2.status="Fir Filed"
+		instance2.status="FIR Filed"
 		instance2.save()
-		messages.success(request,"sucessfully Created")
+		messages.success(request,"FIR filed successfully")
 		return HttpResponseRedirect('/crimefiles/')
 	context={
 	"form":form,
@@ -61,7 +61,7 @@ def copstatus_create(request,id=None):
 		instance=form.save(commit=False)
 		instance.complaintid=complaintid
 		instance.save()
-		messages.success(request,"sucessfully Created")
+		messages.success(request,"Police proceeding successfully added")
 		return HttpResponseRedirect('/crimefiles/')
 	context={
 	"title":title,
@@ -84,7 +84,7 @@ def casestatus_create(request,id=None):
 		instance.save()
 		instance2.status="Case Open"
 		instance2.save()
-		messages.success(request,"sucessfully Created")
+		messages.success(request,"Court proceeding successfully added")
 		return HttpResponseRedirect('/crimefiles/')
 	context={
 	"title":title,
@@ -107,7 +107,7 @@ def caseclose(request,id=None):
 		instance.save()
 		instance2.status="Case Closed"
 		instance2.save()
-		messages.success(request,"sucessfully Created")
+		messages.success(request,"Case closed successfully")
 		return HttpResponseRedirect('/crimefiles/')
 	context={
 	"title":title,
@@ -181,7 +181,7 @@ def complaint_update(request,id= None):
 	if not request.user.is_superuser:
 		if request.user.groups.filter(name="Police").exists() or request.user.groups.filter(name="Court").exists():
 	 		return Http404
-	if CaseClose.objects.filter(complaintid=id).exists():
+	if Fir.objects.filter(complaintid=id).exists():
 		return Http404
 	instance=get_object_or_404(Complaint,complaintid=id)
 	form =ComplaintForm(request.POST or None,instance=instance)

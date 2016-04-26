@@ -12,12 +12,12 @@ class Complaint(models.Model):
 	location=models.TextField()
 	user=models.CharField(max_length=120,default="Annonymous")
 	complaintregistered="Complaint Registered"
-	firfiled="Fir Filed"
+	firfiled="FIR Filed"
 	caseopen="Case Open"
 	caseclosed="Case Closed"
 	status_choice=(
 		(complaintregistered,"Complaint Registered"),
-		(firfiled,"Fir Filed"),
+		(firfiled,"FIR Filed"),
 		(caseopen,"Case Open"),
 		(caseclosed,"Case Closed"),
 		)

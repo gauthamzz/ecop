@@ -6,8 +6,8 @@
 <!-- {{title}} -->
 		 <div class="brand-logo" style="font-family: 'Lucida Grande', Helvetica, Arial, sans-serif; font-size: 18pt;"><i class="material-icons left" style="margin-top: .1em;">list</i>Registered Complaints</div>
 		 <ul id="nav-mobile" class="right hide-on-med-and-down">
-			
-			 <li class=" teal lighten-1"><a href="/crimefiles/createcomplaint"> <i class="material-icons left " style="margin-top: .1em;">add</i>New Complaint</a></li>
+
+			 <li class=" teal lighten-1"><a href="/crimefiles/createcomplaint"> <i class="material-icons left  " style="margin-top: .1em;">add</i>New Complaint</a></li>
         <li><a href="">{{who}}</a></li>
 			 <li><a href="/accounts/logout"> Logout</a></li>
 
@@ -23,12 +23,25 @@
 	<div class="row">
 	{%for object in object_list%}
 <!--edit here for changing induvijual ones -->
-<div class="card-panel hoverable grey lighten-4">
-    <a href='{{object.get_absolute_url}}'  class="waves-effect waves-light btn" role="button">Complaint Number {{object.complaintid}}</a>
+<!-- <div class="card-panel hoverable grey lighten-4"> -->
+    <!-- {{object.complaintid}}</br>
 		{{object.dateofcomplaint}}</br>
-		Status: {{object.status}}
-    <br/><br/>
-</div>
+		Status: {{object.status}}<br/>
+		<a href='{{object.get_absolute_url}}'  class="waves-effect waves-light btn" role="button">View</a> -->
+
+		<ul class="collection">
+	     <li class="collection-item avatar">
+	       <i class="material-icons circle  teal darken-2">info_outline</i>
+	       <div class="title" style="font-size:18pt;">Complaint number {{object.complaintid}}</div>
+
+					 {{object.dateofcomplaint}} </br>
+	        Status : {{object.status}}
+	       <!-- </p> -->
+	      <a href='{{object.get_absolute_url}}'  class="waves-effect waves-light btn secondary-content" role="button">View</a>
+	     </li>
+	   </ul>
+
+<!-- </div> -->
 
 	{% endfor%}
 
@@ -67,7 +80,7 @@
                 <h5 class="white-text">Crimefiles </h5>
                 <p class="grey-text text-lighten-4">An Online complaint registration and case tracking system</p>
               </div>
-             
+
             </div>
           </div>
           <div class="footer-copyright">
