@@ -11,8 +11,9 @@
   <div class="nav-wrapper">
     <a href="{{object.get_absolute_url}}" class="brand-logo ">Complaint {{title}}</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-    {% if is_compainant%}
-      <li><a href="{{object.get_absolute_url}}edit"><i class="material-icons left">update</i>Complaint</a></li>{%endif%}
+    <!-- {% if is_compainant%} -->
+      <li><a href="{{object.get_absolute_url}}edit"><i class="material-icons left">update</i>Complaint</a></li>
+      <!-- {%endif%} -->
           {% if is_cop%}
       <li><a href="{{object.get_absolute_url}}createfir"><i class="material-icons left">add</i>FIR</a></li>
       <li><a href="{{object.get_absolute_url}}createcopstatus"><i class="material-icons left">add</i>Cop status</a></li>
