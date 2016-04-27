@@ -5,7 +5,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User, Group
-
+from django.db.models import Q
 
 
 from .forms import ComplaintForm,FirForm,CopStatusForm,CaseStatusForm,CaseCloseForm
@@ -159,6 +159,13 @@ def complaint_list(request):
 		queryset_list=Complaint.objects.all().order_by("-dateofcomplaint")
 	else:
 		queryset_list=Complaint.objects.filter(user=request.user.username).order_by("-dateofcomplaint")
+	query = request.GET.get("q")
+	if query:
+		queryset_list=queryset_list.filter(Q(complaintid__icontains=query)|
+		Q(content__icontains=query)|
+		Q(policestation__icontains=query)|
+		Q(location__icontains=query)
+		).distinct()
 	paginator = Paginator(queryset_list, 5) # Show 25 contacts per page
 	who=request.user
 	page = request.GET.get('page')
@@ -198,4 +205,3 @@ def complaint_update(request,id= None):
 	"form":form,
 	}
 	return render(request,"complaint_form.html",context)
-
