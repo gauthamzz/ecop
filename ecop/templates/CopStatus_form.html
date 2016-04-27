@@ -1,0 +1,23 @@
+{%extends "base.html"%}
+{%block content%}
+
+<nav class='teal'>
+  <div class="nav-wrapper">
+    <a href="" class="brand-logo center">  <i class="material-icons left">add</i>{{title}}</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="/crimefiles">  <i class="material-icons left">view_list</i>Home</a></li>
+    </ul>
+
+  </div>
+</nav>
+
+<div class="col-sm-6 col-sm-offset-3">
+
+
+
+<form method='POST' action=''>{% csrf_token %}
+{{ form.as_p }}
+<input type='submit' class="waves-effect waves-light btn" value='Update Current procceding'/>
+</form>
+</div>
+{%endblock content%}

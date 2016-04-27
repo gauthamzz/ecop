@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+
+<nav class='teal'>
+  <div class="nav-wrapper">
+    <a href="/" class="brand-logo center">  <i class="material-icons left">search</i>Crimefiles</a>
+  </div>
+ 
+ <ul class="right hide-on-med-and-down">
+         </ul>
+
+
+
+</nav>
+
+
+</br></br>
+<div class ="col-sm-4 col-sm-offset-4">
+<form method="post" action="">
+{% csrf_token %}
+<div class="card-panel hoverable grey lighten-4">
+
+{{ form }}
+
+</div>
+<input type="submit"  class="waves-effect waves-light btn" value="login" />
+<input type="hidden" name="next" value="/crimefiles/" />
+  
+<!-- 
+  <button class="btn waves-effect waves-light" type="submit" name="action" onclick="window.location.href='/accounts/register'">Register
+   
+  </button> -->
+
+ <a href='/accounts/register'  class="waves-effect waves-light btn" role="button"> <i class="material-icons right">supervisor_account</i>Register</a>
+
+</form>
+</div>
+ <!-- parallax -->
+
+
+    <div class="parallax-container">
+      <div class="parallax">
+      	
+
+      </div>
+    </div>
+
+
+<!-- footer -->
+
+  <footer class="page-footer teal">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Crimefiles </h5>
+                <p class="grey-text text-lighten-4">An Online complaint registration and case tracking system</p>
+              </div>
+             
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2016 Copyright Gautham, Sulyab, Geetha, Akhila
+            <a class="grey-text text-lighten-4 right" href="/accounts/register"></a>
+            </div>
+          </div>
+        </footer>
+
+
+
+        
+{% endblock %}

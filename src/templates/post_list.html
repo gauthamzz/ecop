@@ -1,0 +1,45 @@
+{%extends "base.html"%}
+{%block content%}
+<div class ="col-sm-6 col-sm-offset-3">
+<h1>{{title}}<br/></h1>
+	<div class="row">
+	{%for object in object_list%}
+
+<div class="row">
+	<div class="col-sm-12 " >
+	    <div class="thumbnail">
+	      <!-- <img src="..." alt="..."> -->
+	      <div class="caption">
+	        <h3><a href='{{object.get_absolute_url}}'>{{object.title}}</a><small>{{object.timestamp|timesince}} ago</small></h3>
+	        <p>{{object.content|linebreaks|truncatechars:120}}</p>
+	        <p><a href="{{object.get_absolute_url}}" class="btn btn-primary" role="button">View</a></p>
+	      </div>
+	    </div>
+	  </div>
+
+</div>
+<hr/>
+	{% endfor%}
+<div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?page={{ object_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <a href="?page={{ object_list.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+	
+</div>
+	
+{%endblock content%}
+
+
+

@@ -1,0 +1,162 @@
+{%extends "base.html"%}
+{% block head_title %} {{instance.title}}{% endblock head_title%}
+
+
+{%block content%}
+<!-- <a href='{{object.get_absolute_url}}edit'  class="btn btn-primary" role="button">update complaint</a>
+<a href='{{object.get_absolute_url}}createfir'  class="btn btn-primary" role="button">create fir</a>
+<a href='{{object.get_absolute_url}}createcopstatus'  class="btn btn-primary" role="button">create cop status</a>
+<a href='{{object.get_absolute_url}}createcasestatus'  class="btn btn-primary" role="button">update case status</a> -->
+<nav class="teal">
+  <div class="nav-wrapper">
+  <div class="brand-logo" style="font-family: 'Lucida Grande', Helvetica, Arial, sans-serif; font-size: 18pt;"><i class="material-icons left" style="margin-top: .1em;">description</i>Complaint number {{title}}</div>
+
+  <!-- <i class="material-icons left">update</i>
+    <a href="{{object.get_absolute_url}}" class="brand-logo ">Complaint number {{title}}</a> -->
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+    
+      <li><a href="/crimefiles/"><i class="material-icons left">home</i>Home</a></li>
+       {%if not instance5%}
+         {%if not instance2%}
+   
+     <li><a href="{{object.get_absolute_url}}edit"><i class="material-icons left">update</i>Edit Complaint</a></li>
+
+  
+     
+      {% if is_cop%}
+      <li><a href="{{object.get_absolute_url}}createfir"><i class="material-icons left">add</i>File FIR</a></li>
+      
+      {%endif%}
+    {%endif%}
+
+    {% if is_cop%}
+      <li><a href="{{object.get_absolute_url}}createcopstatus"><i class="material-icons left">add</i>Add Police Proceeding</a></li>
+      {%endif%}
+
+      {% if is_court %}
+      <li><a href="{{object.get_absolute_url}}createcasestatus"><i class="material-icons left">add</i>Add Court Proceeding</a></li>
+      {%endif%}  
+      
+
+      {% if is_court %}
+      <li><a href="{{object.get_absolute_url}}closecase"><i class="material-icons left">close</i>Close Case</a></li>
+      {%endif%}
+
+
+    {%endif%}
+
+
+      
+    </ul>
+  </div>
+</nav>
+<!-- <div class="col-sm-6 col-sm-offset-3"> -->
+
+  <!-- contents of complaint -->
+
+
+ <!-- <div class="section white">
+   <div class="row container">
+     <h2 class="header">Complaint Details</h2> -->
+<!-- <div class="col-sm-8 col-sm-offset-2"> -->
+<div class="card-panel hoverable grey lighten-4">
+<nav>
+     <div class="nav-wrapper teal center">
+       <div style="font-size:30px;">Complaint Details</div>
+  </div>
+   </nav><br/>
+    <div style="font-size:18px;">Date & Time of filing complaint :</div> {{instance.dateofcomplaint}}<br/><br/>
+    <div style="font-size:18px;">Police Station :</div>{{instance.policestation}}</br><br/>
+    <div style="font-size:18px;">Location : </div>{{instance.location}}</br><br/>
+     <div style="font-size:18px;">Description : </div>{{instance.content|linebreaks}}
+</div>
+<!-- </div> -->
+     <!-- <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p> -->
+   <!-- </div>
+ </div> -->
+ <!-- add if parallax needed -->
+ <!-- <div class="parallax-container">
+   <div class="parallax"><img src="images/2.jpg"></div>
+ </div> -->
+
+
+{%if instance2%}
+<!-- contents of fir -->
+<div class="card-panel hoverable teal lighten-5">
+<nav>
+     <div class="nav-wrapper teal center">
+       <div style="font-size:30px;">FIR Details</div>
+  </div>
+   </nav><br/>
+
+<!-- <h2>{{title2}}</h2> -->
+<div style="font-size:18px;">FIR ID :</div>{{instance2.firid}}<br/><br/>
+<div style="font-size:18px;">Signed By :</div>{{instance2.signedby}}</br><br/>
+<div style="font-size:18px;">Content :</div>{{instance2.content}}
+</div>
+{% endif %}
+<!-- <div class="parallax-container">
+  <div class="parallax"><img src="images/3.jpg"></div>
+</div> -->
+{%if instance3%}
+<!-- contents of police procedure -->
+<div class="card-panel hoverable teal lighten-4">
+  <nav>
+     <div class="nav-wrapper teal center">
+       <div style="font-size:30px;">Police Proceedings</div>
+  </div>
+   </nav><br/>
+
+
+{%for object in instance3%}
+<div style="font-size:18px;">{{object.title}}</div>{{object.description}}<br/><i>{{object.dateofregister}}</i><br/><br/>
+
+{%endfor%}
+</div>
+{% endif %}
+<!-- <div class="parallax-container">
+   <div class="parallax"><img src="images/1.jpg"></div>
+ </div> -->
+
+{%if instance4%}
+<!-- contents of case procedure -->
+<div class="card-panel hoverable teal lighten-3">
+  <nav>
+     <div class="nav-wrapper teal center">
+       <div style="font-size:30px;">Court Proceedings</div>
+  </div>
+   </nav><br/>
+
+<!-- <h3>{{title4}}</h3> -->
+{%for obj in instance4%}
+<i>{{obj.dateofregister}}</i>
+<div style="font-size:18px;">Case Number :</div>{{obj.casenumber}}</br>
+<div style="font-size:18px;">Court Name :</div>{{obj.courtname}}</br>
+<div style="font-size:18px;">Description of Proceeding :</div>{{obj.description}}</br>
+
+<br/>
+<br/>
+{%endfor%}
+</div>
+
+{%endif%}
+
+{%if instance5%}
+<!-- contents of case procedure -->
+<div class="card-panel hoverable teal lighten-3">
+  <nav>
+     <div class="nav-wrapper teal center">
+       <div style="font-size:30px;">Verdict</div>
+  </div>
+   </nav><br/>
+
+<!-- <h3>{{title4}}</h3> -->
+{%for obj in instance5%}
+<div style="font-size:18px;">{{obj.description}}</div><i>{{obj.dateofregister}}</i>
+<br/>
+{%endfor%}
+</div>
+
+{%endif%}
+<!-- </div> -->
+{%endblock content%}
