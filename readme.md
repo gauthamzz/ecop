@@ -1,14 +1,26 @@
-ecop
-----
+ecop - Crimefiles
+-----------------
 
-To run
+Crimefiles is a complaint registration portal made using python-Django webframework.
 
-  $cd ecop
-  $python manage.py runserver
+Features :
+----------
+Users can register and file complaints and update them till an FIR is filed
+Police/COP can file 1 FIR and Update police proceedings
+Court can Update Court proceedings and Close the case
 
-you can acess the files in your browser at
+![gif](https://github.com/gauthamzz/ecop/blob/master/ecopgif.gif)
 
-  localhost:8000/
+Requirements
+-----------
+python2
+Django
+django-registrations
 
-Install virtualenv and install django in it.
-for refer : https://www.codingforentrepreneurs.com/projects/try-django-19/versions-install/
+To Run
+------
+Travese to the ECOP folder with manage.py 
+
+execute in terminal: python manage.py runserver
+
+you can access the webpage on localhost:8000/
