@@ -1,5 +1,7 @@
 # ecop - Crimefiles
 -----------------
+<img src="https://github.com/gauthamzz/ecop/blob/master/ecop.svg" width="600" height="400" />
+
 
 Crimefiles is a complaint registration portal made using python-Django webframework.
 
